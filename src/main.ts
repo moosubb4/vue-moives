@@ -2,8 +2,18 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import vueRx from 'vue-rx';
 
+import axios from 'axios';
 Vue.config.productionTip = false;
+Vue.use(vueRx);
+
+axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
+
+// axios.defaults.headers.common['Authorization'] = '';
+// axios.defaults.headers.get['Accepts'] = 'application/json';
+
+
 
 new Vue({
   router,
