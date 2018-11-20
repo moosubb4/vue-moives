@@ -21,6 +21,6 @@ new Vue({
   render: (h) => h(App),
 }).$mount('#app');
 
-// git add dist && git commit-m "initial dist subtree commit"
+// git add dist && git commit -m "deploy"
 // git subtree push --prefix dist origin gh-pages
 
