@@ -3,10 +3,11 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import vueRx from 'vue-rx';
+import Rx from 'rxjs';
 
 import axios from 'axios';
 Vue.config.productionTip = false;
-Vue.use(vueRx);
+Vue.use(vueRx, Rx);
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
