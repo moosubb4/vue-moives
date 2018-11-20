@@ -17,6 +17,7 @@ export default class Paginator extends Vue {
     public page: number = 0;
 
     public created() {
+        this.page = this.data.page;
         // console.log('MovieCard', this.data);
     }
 
