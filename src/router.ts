@@ -21,7 +21,7 @@ export default new Router({
     {
       path: '/movie',
       name: 'movie',
-      component: () => import('./views/Movie-page.vue'),
+      component: () => import('./views/MoviePage.vue'),
     },
   ],
 });
