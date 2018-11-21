@@ -122,6 +122,14 @@ export default class MoviePage extends Vue {
 }
 
 /*small Screen*/
-@media screen and (device-width: 320px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+@media screen and (min-width: 320px) and (max-width: 640px) {
+}
+
+/*medium Screen*/
+@media screen and (min-width: 641px) and (max-width: 1007px) {
+}
+
+/*large Screen*/
+@media screen and (max-width: 1009px) {
 }
 </style>

@@ -118,27 +118,40 @@ export default class MovieCard extends Vue {
   /* right: 25%; */
   font-size: 25px;
   color: white;
-  padding: 10px;
+  padding: 0 10px;
   text-shadow: 0px 0px 10px #080808;
 }
 .modal-close:hover {
   font-size: 30px;
 }
 
-@media screen and (max-width: 500px) {
-  .card-container {
-    padding: 0 10px;
-  }
-
-  .backdrop-content {
+/*small Screen*/
+@media screen and (min-width: 320px) and (max-width: 640px) {
+  .modal-body {
     width: 80%;
   }
-
-  .appcard {
-    margin: 5px auto;
+  .modal-close {
+    margin-left: 70%;
   }
 }
 
-@media screen and (min-width: 320px) {
+/*medium Screen*/
+@media screen and (min-width: 641px) and (max-width: 1007px) {
+  .modal-body {
+    width: 70%;
+  }
+  .modal-close {
+    margin-left: 65%;
+  }
+}
+
+/*large Screen*/
+@media screen and (min-width: 1008px) {
+  .modal-body {
+    width: 60%;
+  }
+  .modal-close {
+    margin-left: 56%;
+  }
 }
 </style>
