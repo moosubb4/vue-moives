@@ -60,6 +60,7 @@ export default class MovieCard extends Vue {
 .card-body {
   position: relative;
   height: 375px;
+  cursor: pointer;
 }
 .card-label {
   position: absolute;
@@ -68,7 +69,7 @@ export default class MovieCard extends Vue {
   left: 0;
   width: 100%;
   color: white;
-  display: block;
+  display: none;
   background-color: rgba(0, 0, 0, 0.5);
   transition: 0.2s;
   margin-top: -16px;
@@ -76,26 +77,11 @@ export default class MovieCard extends Vue {
 
 .card-body > img:hover + label {
   top: 85%;
+  display: block;
   /* margin-top: -20px; */
 }
 
 /*=================Modal=================*/
-
-/* position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto 0 auto auto;
-    width: 240px;
-    text-align: left;
-    font-size: 110%;
-    z-index: 10;
-    border: 2px solid #5a9aef;
-    border-radius: 5px;
-    background-color: #FFF;
-    overflow: hidden;
-    height: 520px; */
 
 .modal {
   display: block;
@@ -122,6 +108,7 @@ export default class MovieCard extends Vue {
   /* border: 1px solid #888; */
   width: 50%; /* Could be more or less, depending on screen size */
   max-height: 100%;
+  transition: 0.5s;
 }
 
 .modal-close {

@@ -4,8 +4,10 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
     <div class="card-container">
-        <div class="card-item" :key="item.id" v-for="item in MovieData">
-            <MovieCard :data="item" />
+        <div class="card-item-container">
+            <div class="card-item" :key="item.id" v-for="item in MovieData">
+                <MovieCard :data="item" />
+            </div>
         </div>
     </div>
 
@@ -92,19 +94,31 @@ export default class MoviePage extends Vue {
   padding: 2% 5%;
   /* flex-direction: row;
   flex-wrap: wrap; */
-  flex-flow: row wrap;
+  flex-flow: column nowrap;
   /* justify-content: center; */
   /* align-items: flex-start; */
 }
 
+.card-item-container {
+  /* border: solid 1px green; */
+  display: flex;
+  flex-flow: row wrap;
+}
+
 .card-item {
-  border: solid 1px blue;
+  /* border: solid 1px blue; */
   order: 0;
   margin: 5px auto;
   /* width: 250px;
   max-height: 350px; */
   /*  flex-shrink: 0; */
   /* flex-basis: 20%; */
+}
+
+.card-item-container::after {
+  content: "";
+  width: 250px;
+  margin: 5px auto;
 }
 
 /*small Screen*/
