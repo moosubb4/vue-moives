@@ -12,8 +12,8 @@
 
     <div v-show="showModal" class="modal">
         <div class="modal-body">
+            <span class="modal-close" @click="showModal=false">&times;</span>
           <div class="modal-body-img">
-            <a class="modal-close" @click="showModal=false">X</a>
             <img :src="data.backdrop_path" alt="">
           </div>
           <div class="modal-body-content">
@@ -79,7 +79,8 @@ export default class MovieCard extends Vue {
   margin-top: -16px;
 }
 
-.card-body > img:hover + label {
+.card-body > img:hover + label,
+.card-body > img:focus + label {
   top: 85%;
   display: block;
   /* margin-top: -20px; */
@@ -139,15 +140,20 @@ export default class MovieCard extends Vue {
 .modal-close {
   cursor: pointer;
   position: absolute;
-  margin-left: 47%;
-  /* right: 25%; */
-  font-size: 25px;
+  margin-left: 28%;
+  font-size: 40px;
   color: white;
-  padding: 0 10px;
+  padding: 0 5px;
   text-shadow: 0px 0px 10px #080808;
+  /* color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold; */
 }
-.modal-close:hover {
-  font-size: 30px;
+.modal-close:hover,
+.modal-close:focus {
+  color: rgb(223, 223, 223);
+  /* font-size: 45px; */
 }
 
 /*small Screen*/
@@ -156,7 +162,7 @@ export default class MovieCard extends Vue {
     width: 80%;
   }
   .modal-close {
-    margin-left: 70%;
+    /* margin-left: 70%; */
   }
 }
 
@@ -166,7 +172,7 @@ export default class MovieCard extends Vue {
     width: 70%;
   }
   .modal-close {
-    margin-left: 65%;
+    /* margin-left: 65%; */
   }
 }
 
@@ -176,7 +182,7 @@ export default class MovieCard extends Vue {
     width: 60%;
   }
   .modal-close {
-    margin-left: 56%;
+    /* margin-left: 56%; */
   }
 }
 </style>
