@@ -12,12 +12,16 @@
 
     <div v-show="showModal" class="modal">
         <div class="modal-body">
-        <a class="modal-close" @click="showModal=false">X</a>
-        <img :src="data.backdrop_path" alt="">
-        <p>{{data.original_language}}</p>
-        <p>{{data.original_title}}</p>
-        <p>{{data.overview}}</p>
-        <p>{{data.vote_average}}% from {{data.vote_count}} people</p>
+          <div class="modal-body-img">
+            <a class="modal-close" @click="showModal=false">X</a>
+            <img :src="data.backdrop_path" alt="">
+          </div>
+          <div class="modal-body-content">
+            <p>{{data.original_language}}</p>
+            <p>{{data.original_title}}</p>
+            <p>{{data.overview}}</p>
+            <p>{{data.vote_average}}% from {{data.vote_count}} people</p>
+          </div>
         </div>
     </div>
 
@@ -103,12 +107,33 @@ export default class MovieCard extends Vue {
 
 .modal-body {
   background-color: #fefefe;
-  margin: 1% auto; /* 15% from the top and centered */
-  /* padding: 5px; */
-  /* border: 1px solid #888; */
-  width: 50%; /* Could be more or less, depending on screen size */
+  margin: 1% auto;
+  width: 50%;
   max-height: 100%;
   transition: 0.5s;
+}
+
+.modal-body-img {
+  /* position: absolute;
+  margin: 0 auto;
+  top: 5%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 500px; */
+}
+
+.modal-body-content {
+  /* position: relative;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  color: white; */
+}
+
+.modal-body-img > img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .modal-close {
