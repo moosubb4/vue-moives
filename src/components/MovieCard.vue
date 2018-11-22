@@ -16,6 +16,7 @@
         <img :src="data.backdrop_path" alt="">
         <div class="modal-body-content">
           <h3><span>{{data.original_title}}</span></h3>
+          <p>Release {{data.release_date}}</p>
           <p>{{data.overview}}</p>
           <p>{{data.vote_average}}% from {{data.vote_count}} people</p>
         </div>
@@ -113,17 +114,13 @@ export default class MovieCard extends Vue {
 
 .modal > .modal-body > .modal-body-content {
   position: absolute;
-  /* top:80%; */
   left: 0;
   bottom: 0;
-  /* bottom: 0; */
-  /* width: 100%; */
-
+  right: 0;
   color: white;
-  /* font: bold 24px/45px Helvetica, Sans-Serif; */
   letter-spacing: -1px;
   background: rgba(0, 0, 0, 0.7);
-  padding: 10px;
+  padding: 0 10px;
 }
 
 /* .modal > .modal-body > h3 span {
@@ -206,6 +203,14 @@ export default class MovieCard extends Vue {
   .modal-body {
     width: 80%;
   }
+  /*
+  .modal > .modal-body > .modal-body-content {
+    top: 95%;
+    left: 0;
+    bottom: unset;
+    color: white;
+    letter-spacing: -1px;
+  }*/
 }
 
 /*medium Screen*/
@@ -213,6 +218,13 @@ export default class MovieCard extends Vue {
   .modal-body {
     width: 70%;
   }
+  /*.modal > .modal-body > .modal-body-content {
+    top: 95%;
+    left: 0;
+    bottom: unset;
+    color: white;
+    letter-spacing: -1px;
+  }*/
 }
 
 /*large Screen*/
