@@ -12,16 +12,26 @@
 
     <div v-show="showModal" class="modal">
         <div class="modal-body">
-            <span class="modal-close" @click="showModal=false">&times;</span>
           <div class="modal-body-img">
-            <img :src="data.backdrop_path" alt="">
-          </div>
-          <div class="modal-body-content">
-            <p>{{data.original_language}}</p>
+            <span class="modal-close" @click="showModal=false">&times;</span>
             <p>{{data.original_title}}</p>
+            <img :src="data.backdrop_path" alt="">
+            <!-- <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/G90vUgcdoA8?controls=0&amp;start=1" 
+            frameborder="0" 
+            allow="accelerometer; 
+            autoplay; 
+            encrypted-media; 
+            gyroscope; 
+            picture-in-picture" 
+            allowfullscreen></iframe> -->
+            <div class="modal-body-content">
+            <!-- <p>{{data.original_language}}</p> -->
             <p>{{data.overview}}</p>
             <p>{{data.vote_average}}% from {{data.vote_count}} people</p>
           </div>
+          </div>
+          
         </div>
     </div>
 
@@ -48,7 +58,7 @@ export default class MovieCard extends Vue {
 /*=================Card=================*/
 
 .card {
-  width: 250px;
+  /* width: 250px; */
   /* border: solid 1px red; */
   /* margin: 5px 15px; */
   /* padding: 5px; */
@@ -63,7 +73,7 @@ export default class MovieCard extends Vue {
 
 .card-body {
   position: relative;
-  height: 375px;
+  /* height: 375px; */
   cursor: pointer;
 }
 .card-label {
@@ -112,6 +122,7 @@ export default class MovieCard extends Vue {
   width: 50%;
   max-height: 100%;
   transition: 0.5s;
+  overflow: auto;
 }
 
 .modal-body-img {
@@ -138,17 +149,20 @@ export default class MovieCard extends Vue {
 }
 
 .modal-close {
-  cursor: pointer;
+  /* cursor: pointer;
   position: absolute;
   margin-left: 28%;
   font-size: 40px;
   color: white;
   padding: 0 5px;
-  text-shadow: 0px 0px 10px #080808;
-  /* color: #aaaaaa;
+  text-shadow: 0px 0px 10px #080808; */
+  cursor: pointer;
+  color: #ffffff;
   float: right;
-  font-size: 28px;
-  font-weight: bold; */
+  font-size: 40px;
+  font-weight: bold;
+  padding: 0 5px;
+  text-shadow: 0px 0px 10px #080808;
 }
 .modal-close:hover,
 .modal-close:focus {
@@ -162,7 +176,7 @@ export default class MovieCard extends Vue {
     width: 80%;
   }
   .modal-close {
-    /* margin-left: 70%; */
+    /* margin-left: 27%; */
   }
 }
 
@@ -172,7 +186,7 @@ export default class MovieCard extends Vue {
     width: 70%;
   }
   .modal-close {
-    /* margin-left: 65%; */
+    /* margin-left: 27%; */
   }
 }
 
@@ -182,7 +196,7 @@ export default class MovieCard extends Vue {
     width: 60%;
   }
   .modal-close {
-    /* margin-left: 56%; */
+    /* margin-left: 27%; */
   }
 }
 </style>
