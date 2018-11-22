@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <!-- <Paginator :data="MovieConfig" @page="getMovie($event)" />  -->
+    <Paginator :data="MovieConfig" @page="getMovie($event)" /> 
 
    
   </div>
@@ -25,19 +25,19 @@ import { Movie, MovieTotal } from "@/models";
 import MovieCard from "@/components/MovieCard";
 import Paginator from "@/components/Paginator";
 
-import { Observable } from "rxjs";
-import { map, switchMap } from "rxjs/operators";
+// import { Observable } from "rxjs";
+// import { map, switchMap } from "rxjs/operators";
 
 @Component({
     components: {
         MovieCard,
         Paginator
     },
-    subscriptions(this: Vue) {
-        return {
-            // dataMov: this
-        };
-    }
+    // subscriptions(this: Vue) {
+    //     return {
+    //         // dataMov: this
+    //     };
+    // }
 })
 export default class MoviePage extends Vue {
     public MovieData: Movie[] = [];
@@ -54,7 +54,7 @@ export default class MoviePage extends Vue {
         const options = {
             params: {
                 api_key: "22dbd915ba93d8eab2121edf01a8382d",
-                page: event
+                page: event,
                 // language: 'th-TH'
             }
         };
