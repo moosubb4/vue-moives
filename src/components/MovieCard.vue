@@ -139,8 +139,8 @@ export default class MovieCard extends Vue {
 }
 
 .modal > .modal-body > img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .modal > .modal-body > .modal-body-content {

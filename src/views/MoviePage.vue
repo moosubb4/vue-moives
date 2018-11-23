@@ -7,7 +7,7 @@
         <div class="card-item-container">
             <div class="card-item" :key="item.id" v-for="item in MovieData">
                 <MovieCard :data="item" />
-                <button @click="getSearchMovie(item.id)">Detail</button>
+                <!-- <button @click="getSearchMovie(item.id)">Detail</button> -->
             </div>
         </div>
     </div>
