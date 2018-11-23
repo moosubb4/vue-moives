@@ -30,83 +30,89 @@ import Paginator from "@/components/Paginator";
 // import { map, switchMap } from "rxjs/operators";
 
 @Component({
-    components: {
-        MovieCard,
-        Paginator
-    },
-    // subscriptions(this: Vue) {
-    //     return {
-    //         // dataMov: this
-    //     };
-    // }
+  components: {
+    MovieCard,
+    Paginator
+  }
+  // subscriptions(this: Vue) {
+  //     return {
+  //         // dataMov: this
+  //     };
+  // }
 })
 export default class MoviePage extends Vue {
-    public MovieData: Movie[] = [];
-    public MovieConfig: MovieTotal = {};
+  public MovieData: Movie[] = [];
+  public MovieConfig: MovieTotal = {};
 
-    public dataMov: any[] = [];
+  public dataMov: any[] = [];
 
-    public created() {
-        this.getMovie();
-    }
+  public created() {
+    this.getMovie();
+  }
 
-    public getMovie(event?: number) {
-        // ?language=th-TH
-        const options = {
-            params: {
-                api_key: "22dbd915ba93d8eab2121edf01a8382d",
-                page: event,
-                // language: 'th-TH'
+  public getMovie(event?: number) {
+    // ?language=th-TH
+    const options = {
+      params: {
+        api_key: "22dbd915ba93d8eab2121edf01a8382d",
+        page: event
+        // language: 'th-TH'
+      }
+    };
+
+    return Axios.get<AxiosResponse>("/discover/movie", options)
+      .then(res => {
+        if (res) {
+          const data: MovieTotal = res.data;
+          const { page, total_results, total_pages, results } = data;
+          console.log("​getMovie -> data", data);
+
+          this.MovieData = data.results;
+          this.MovieData.map(e => {
+            if (e.poster_path) {
+              e.poster_path = `https://image.tmdb.org/t/p/w500${e.poster_path}`;
             }
-        };
 
-        return Axios.get<AxiosResponse>("/discover/movie", options)
-            .then(res => {
-                if (res) {
-                    const data: MovieTotal = res.data;
-                    const { page, total_results, total_pages, results } = data;
-                    console.log("​getMovie -> data", data);
-
-                    this.MovieData = data.results;
-                    this.MovieData.map(e => {
-                        e.poster_path = `https://image.tmdb.org/t/p/w500${e.poster_path}`;
-                        e.backdrop_path = `https://image.tmdb.org/t/p/original${
-                            e.backdrop_path
-                            }`;
-                    });
-
-                    this.MovieConfig = { page, total_results, total_pages };
-                    console.log("getMovie", this.MovieData, "\nConfig", this.MovieConfig);
-                }
-            })
-            .catch(err => console.log("getMovie err", err));
-    }
-
-    public getSearchMovie(movieId?: number) {
-        // ?language=th-TH
-        const options = {
-            params: {
-                api_key: "22dbd915ba93d8eab2121edf01a8382d"
-                // language: 'th-TH',
-                // append_to_response:'videos'
+            if (e.backdrop_path) {
+              e.backdrop_path = `https://image.tmdb.org/t/p/original${
+                e.backdrop_path
+              }`;
             }
-        };
+          });
 
-        return Axios.get<AxiosResponse>(`/movie/${movieId}`, options)
-            .then(res => {
-                if (res) {
-                    const data: MovieTotal = res.data;
-                    const { page, total_results, total_pages, results } = data;
-                    console.log("​getSearchMovie -> data", data);
-                }
-            })
-            .catch(err => console.log("getฆำฟพแ้Movie err", err));
-    }
+          this.MovieConfig = { page, total_results, total_pages };
+          console.log("getMovie", this.MovieData, "\nConfig", this.MovieConfig);
+        }
+      })
+      .catch(err => console.log("getMovie err", err));
+  }
+
+  public getSearchMovie(movieId?: number) {
+    // ?language=th-TH
+    const options = {
+      params: {
+        api_key: "22dbd915ba93d8eab2121edf01a8382d"
+        // language: 'th-TH',
+        // append_to_response:'videos'
+      }
+    };
+
+    return Axios.get<AxiosResponse>(`/movie/${movieId}`, options)
+      .then(res => {
+        if (res) {
+          const data: MovieTotal = res.data;
+          const { page, total_results, total_pages, results } = data;
+          console.log("​getSearchMovie -> data", data);
+        }
+      })
+      .catch(err => console.log("getฆำฟพแ้Movie err", err));
+  }
 }
 </script>
 
 <style>
 .card-container {
+  padding: 0 15%;
   /* display: flex;
   padding: 2% 5%;
   flex-flow: column nowrap;
