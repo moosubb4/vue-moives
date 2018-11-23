@@ -13,12 +13,25 @@
     <div v-show="showModal" class="modal" @click="showModal=false">
       <div class="modal-body">
         <span class="modal-close" @click="showModal=false">&times;</span>
+        <div class="modal-progress" 
+            :class="{
+              'modal-progress-danger':data.vote_average < 3,
+              'modal-progress-warn':data.vote_average < 7 && data.vote_average > 3,
+              'modal-progress-good':data.vote_average >= 7,
+            }">
+          <p>{{Math.round(+data.vote_average * 10)}}%</p>
+        </div>
+        <div class="modal-body-title">
+          <h2> {{data.original_title}}  
+            <br>
+            <small>{{data.release_date | dateFilter}}</small>
+          </h2>
+        </div>
         <img :src="data.backdrop_path" alt="">
         <div class="modal-body-content">
-          <h3><span>{{data.original_title}}</span></h3>
-          <p>Release {{data.release_date}}</p>
+          <!-- <h3><span>{{data.original_title}}</span></h3>
+          <p>Release {{data.release_date}}</p> -->
           <p>{{data.overview}}</p>
-          <p>{{data.vote_average}}% from {{data.vote_count}} people</p>
         </div>
       </div>
     </div>
@@ -44,7 +57,25 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Movie, MovieTotal } from "@/models";
 
-@Component
+@Component({
+  filters: {
+    filterName(value: any) {
+      return 'Hello filter' + value;
+    },
+    dateFilter(value: string) {
+      const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+      const dateIso = new Date(value);
+      const splitDate = value.toString().split('-');
+      const date = monthNames[+splitDate[1] - 1] + " " + splitDate[2] + ", " + splitDate[0];
+
+      // var c = dateIso.toString().split(' ');
+      // var g = c[1] + " " + c[2] + ", " + c[3];
+      return date;
+    }
+  }
+})
 export default class MovieCard extends Vue {
   @Prop()
   private data: Movie;
@@ -69,9 +100,9 @@ export default class MovieCard extends Vue {
 
 .card-body {
   position: relative;
-  /* height: 375px; */
   cursor: pointer;
 }
+
 .card-label {
   position: absolute;
   top: 105%;
@@ -123,18 +154,21 @@ export default class MovieCard extends Vue {
   padding: 0 10px;
 }
 
-/* .modal > .modal-body > h3 span {
-  color: white;
-  font: bold 24px/45px Helvetica, Sans-Serif;
+.modal > .modal-body > .modal-body-title {
+  position: absolute;
+  top: 5px;
+  left: 100px;
+  /* background: rgba(0, 0, 0, 0.3); */
+  padding: 0 5px;
   letter-spacing: -1px;
-  background: rgb(0, 0, 0); 
-  background: rgba(0, 0, 0, 0.7);
-  padding: 10px;
-} */
+  color: white;
+  text-align: left;
+  text-shadow: 0px 0px 15px black;
+}
 
 .modal-body {
   margin: 1% auto;
-  width: 100%;
+  width: 80%;
   position: relative;
 }
 
@@ -146,26 +180,6 @@ export default class MovieCard extends Vue {
 .card > .card-body > img {
   max-width: 100%;
   max-height: 100%;
-}
-
-.modal-body-img {
-  /* max-width: 100%;
-  max-height: 100%; */
-  /* position: absolute;
-  margin: 0 auto;
-  top: 5%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 500px; */
-}
-
-.modal-body-content {
-  /* position: relative;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  color: white; */
 }
 
 .modal-body-img > img {
@@ -198,39 +212,66 @@ export default class MovieCard extends Vue {
   font-size: 43px;
 }
 
+.modal-progress {
+  display: block;
+  width: 80px;
+  height: 80px;
+  background-color: #000000bd;
+  position: absolute;
+  border-radius: 50%;
+  border: solid 5px rgb(151, 151, 151);
+  margin: 5px;
+}
+
+.modal-progress-danger {
+  border: solid 5px red;
+  box-shadow: inset 0 0 30px red;
+}
+.modal-progress-warn {
+  border: solid 5px rgb(248, 220, 61);
+  box-shadow: inset 0 0 30px rgb(248, 220, 61);
+}
+.modal-progress-good {
+  border: solid 5px rgb(52, 196, 16);
+  box-shadow: inset 0 0 30px rgb(52, 196, 16);
+}
+
+.modal-progress > p {
+  color: whitesmoke;
+  margin: 23px 18px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
 /*small Screen*/
-@media screen and (min-width: 320px) and (max-width: 640px) {
+@media screen and (max-width: 640px) {
   .modal-body {
     width: 80%;
   }
-  /*
+
   .modal > .modal-body > .modal-body-content {
     top: 95%;
     left: 0;
     bottom: unset;
-    color: white;
-    letter-spacing: -1px;
-  }*/
+  }
 }
 
 /*medium Screen*/
-@media screen and (min-width: 641px) and (max-width: 1007px) {
+@media screen and (max-width: 1007px) {
   .modal-body {
     width: 70%;
   }
-  /*.modal > .modal-body > .modal-body-content {
+  .modal > .modal-body > .modal-body-content {
     top: 95%;
     left: 0;
     bottom: unset;
-    color: white;
-    letter-spacing: -1px;
-  }*/
+  }
 }
 
 /*large Screen*/
-@media screen and (min-width: 1008px) {
+/* @media screen and (min-width: 1008px) {
   .modal-body {
     width: 60%;
   }
-}
+} */
 </style>
