@@ -7,6 +7,7 @@
         <div class="card-item-container">
             <div class="card-item" :key="item.id" v-for="item in MovieData">
                 <MovieCard :data="item" />
+                <button @click="getSearchMovie(item.id)">Detail</button>
             </div>
         </div>
     </div>
@@ -79,6 +80,27 @@ export default class MoviePage extends Vue {
                 }
             })
             .catch(err => console.log("getMovie err", err));
+    }
+
+    public getSearchMovie(movieId?: number) {
+        // ?language=th-TH
+        const options = {
+            params: {
+                api_key: "22dbd915ba93d8eab2121edf01a8382d"
+                // language: 'th-TH',
+                // append_to_response:'videos'
+            }
+        };
+
+        return Axios.get<AxiosResponse>(`/movie/${movieId}`, options)
+            .then(res => {
+                if (res) {
+                    const data: MovieTotal = res.data;
+                    const { page, total_results, total_pages, results } = data;
+                    console.log("​getSearchMovie -> data", data);
+                }
+            })
+            .catch(err => console.log("getฆำฟพแ้Movie err", err));
     }
 }
 </script>
